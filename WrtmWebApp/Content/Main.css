@@ -1,0 +1,7 @@
+﻿.navbar {
+    background-color: #182b4a;
+}
+.jumbotron {
+    background-image: url("./Images/city.jpg");
+    background-size: cover;
+}
