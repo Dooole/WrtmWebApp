@@ -1,7 +1,8 @@
 ﻿.navbar {
     background-color: #182b4a;
 }
+
 .jumbotron {
-    background-image: url("./Images/city.jpg");
+    background-image: url("./Images/banner.jpg");
     background-size: cover;
 }
