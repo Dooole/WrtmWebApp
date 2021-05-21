@@ -25,5 +25,7 @@ namespace WrtmWebApp.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Configuration> Configurations { get; set; }
+        public virtual DbSet<Device> Devices { get; set; }
     }
 }
