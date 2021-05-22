@@ -1,0 +1,67 @@
+﻿@model WrtmWebApp.Models.Configuration
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Configuration</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Hostname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hostname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ipaddr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ipaddr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Netmask)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Netmask)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gateway)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gateway)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dns1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dns1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dns2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dns2)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

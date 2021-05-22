@@ -1,0 +1,64 @@
+﻿@model IEnumerable<WrtmWebApp.Models.Configuration>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Hostname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ipaddr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Netmask)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gateway)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dns1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dns2)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hostname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ipaddr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Netmask)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gateway)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dns1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dns2)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
