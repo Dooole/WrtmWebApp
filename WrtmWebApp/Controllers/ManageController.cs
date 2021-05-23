@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WrtmWebApp.Models;
@@ -72,7 +73,50 @@ namespace WrtmWebApp.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
+
+            var roles = UserManager.GetRoles(userId);
+            if (roles.Count > 0)
+            {
+                ViewBag.Role = roles[0].ToString();
+            }
+            else
+            {
+                ViewBag.Role = "Unknown";
+            }
+
+            var email = UserManager.GetEmail(userId);
+            if (email.Length > 0)
+            {
+                ViewBag.Email = email.ToString();
+            }
+            else
+            {
+                ViewBag.Email = "Unknown";
+            }
+
+            ViewBag.Username = User.Identity.GetUserName().ToString();
+
             return View(model);
+        }
+
+        public Boolean isAdminUser()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = User.Identity;
+                ApplicationDbContext context = new ApplicationDbContext();
+                var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+                var s = UserManager.GetRoles(user.GetUserId());
+                if (s.Count != 0 && s[0].ToString() == "Administrator")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
         }
 
         //
