@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -18,6 +21,19 @@ namespace WrtmWebApp
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Thread thread = new Thread(PollDevices);
+            thread.Start();
+        }
+
+        private void PollDevices()
+        {
+            while (true)
+            {
+                Polling.Poller poller = new Polling.Poller();
+                poller.UpdateAll();
+                Thread.Sleep(10 * 1000);
+            }
         }
     }
 }
