@@ -25,7 +25,7 @@ namespace WrtmWebApp.Polling
 
         public void LogMsg(string msg)
         {
-            string textFilePath = Path.Combine(HostingEnvironment.ApplicationPhysicalPath, "log.txt");
+            string textFilePath = Path.Combine(HostingEnvironment.ApplicationPhysicalPath, "wrtmlog.txt");
             File.WriteAllText(textFilePath, DateTime.Now.ToString()+":"+msg);
         }
 
