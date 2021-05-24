@@ -9,9 +9,10 @@ namespace WrtmWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private wrtmDBEntities db = new wrtmDBEntities();
+        private wrtmDBEntities1 db = new wrtmDBEntities1();
         public ActionResult Index()
         {
+            Response.AddHeader("Refresh", "5");
             return View(db.Devices.ToList());
         }
 

@@ -12,7 +12,7 @@ namespace WrtmWebApp.Controllers
 {
     public class DeviceController : Controller
     {
-        private wrtmDBEntities db = new wrtmDBEntities();
+        private wrtmDBEntities1 db = new wrtmDBEntities1();
 
         // GET: Device
         public ActionResult Index()

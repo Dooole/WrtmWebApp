@@ -69,14 +69,30 @@ namespace WrtmWebApp.Polling
             }
         }
 
+        private Configuration getConfig(string mac, wrtmDBEntities1 db)
+        {
+            Configuration cfg = null;
+            List<Configuration> configs = db.Configurations.ToList();
+            foreach (Configuration c in configs)
+            {
+                if (c.Mac == mac)
+                {
+                    cfg = c;
+                    break;
+                }
+            }
+
+            return cfg;
+        }
+
         public void UpdateAll()
         {
-            wrtmDBEntities db = new wrtmDBEntities();
+            wrtmDBEntities1 db = new wrtmDBEntities1();
             List<Device> list = db.Devices.ToList();
             foreach (Device dev in list)
             {
                 string state = "OFFLINE";
-                Configuration cfg = db.Configurations.Find(dev.Id);
+                Configuration cfg = getConfig(dev.Mac, db);
                 if (cfg != null && Update(cfg.Ipaddr, "root", "root"))
                 {
                     state = "ONLINE";

@@ -4,24 +4,25 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="wrtmDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="wrtmDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Configuration">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mac" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Hostname" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Ipaddr" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Netmask" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Gateway" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Dns1" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Dns2" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Dns2" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Devices">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Mac" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="State" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="50" />
@@ -30,61 +31,64 @@
           <EntitySet Name="Configuration" EntityType="Self.Configuration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Devices" EntityType="Self.Devices" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="wrtmDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="wrtmDBEntities" annotation:LazyLoadingEnabled="true" >
-          <EntitySet Name="Configurations" EntityType="wrtmDBModel.Configuration" />
-          <EntitySet Name="Devices" EntityType="wrtmDBModel.Device" />
-        </EntityContainer>
         <EntityType Name="Configuration">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Hostname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Ipaddr" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Netmask" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Gateway" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Dns1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Dns2" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mac" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Hostname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ipaddr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Netmask" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gateway" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Dns1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Dns2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Device">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Mac" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="State" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mac" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityContainer Name="wrtmDBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Configurations" EntityType="Self.Configuration" />
+          <EntitySet Name="Devices" EntityType="Self.Device" />
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="wrtmDBModelStoreContainer" CdmEntityContainer="wrtmDBEntities" >
+        <EntityContainerMapping StorageEntityContainer="wrtmDBModelStoreContainer" CdmEntityContainer="wrtmDBEntities1">
           <EntitySetMapping Name="Configurations">
             <EntityTypeMapping TypeName="wrtmDBModel.Configuration">
               <MappingFragment StoreEntitySet="Configuration">
-                <ScalarProperty Name="Dns2" ColumnName="Dns2" />
-                <ScalarProperty Name="Dns1" ColumnName="Dns1" />
-                <ScalarProperty Name="Gateway" ColumnName="Gateway" />
-                <ScalarProperty Name="Netmask" ColumnName="Netmask" />
-                <ScalarProperty Name="Ipaddr" ColumnName="Ipaddr" />
-                <ScalarProperty Name="Hostname" ColumnName="Hostname" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Mac" ColumnName="Mac" />
+                <ScalarProperty Name="Hostname" ColumnName="Hostname" />
+                <ScalarProperty Name="Ipaddr" ColumnName="Ipaddr" />
+                <ScalarProperty Name="Netmask" ColumnName="Netmask" />
+                <ScalarProperty Name="Gateway" ColumnName="Gateway" />
+                <ScalarProperty Name="Dns1" ColumnName="Dns1" />
+                <ScalarProperty Name="Dns2" ColumnName="Dns2" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Devices">
             <EntityTypeMapping TypeName="wrtmDBModel.Device">
               <MappingFragment StoreEntitySet="Devices">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="Mac" ColumnName="Mac" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Mac" ColumnName="Mac" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -12,7 +12,7 @@ namespace WrtmWebApp.Controllers
 {
     public class ConfigurationController : Controller
     {
-        private wrtmDBEntities db = new wrtmDBEntities();
+        private wrtmDBEntities1 db = new wrtmDBEntities1();
 
         // GET: Configuration
         public ActionResult Index()
@@ -46,7 +46,7 @@ namespace WrtmWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Hostname,Ipaddr,Netmask,Gateway,Dns1,Dns2")] Configuration configuration)
+        public ActionResult Create([Bind(Include = "Id,Mac,Hostname,Ipaddr,Netmask,Gateway,Dns1,Dns2")] Configuration configuration)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace WrtmWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Hostname,Ipaddr,Netmask,Gateway,Dns1,Dns2")] Configuration configuration)
+        public ActionResult Edit([Bind(Include = "Id,Mac,Hostname,Ipaddr,Netmask,Gateway,Dns1,Dns2")] Configuration configuration)
         {
             if (ModelState.IsValid)
             {

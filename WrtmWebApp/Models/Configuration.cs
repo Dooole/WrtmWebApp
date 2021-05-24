@@ -15,6 +15,7 @@ namespace WrtmWebApp.Models
     public partial class Configuration
     {
         public int Id { get; set; }
+        public string Mac { get; set; }
         public string Hostname { get; set; }
         public string Ipaddr { get; set; }
         public string Netmask { get; set; }

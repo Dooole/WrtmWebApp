@@ -13,10 +13,10 @@ namespace WrtmWebApp.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class wrtmDBEntities : DbContext
+    public partial class wrtmDBEntities1 : DbContext
     {
-        public wrtmDBEntities()
-            : base("name=wrtmDBEntities")
+        public wrtmDBEntities1()
+            : base("name=wrtmDBEntities1")
         {
         }
     

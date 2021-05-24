@@ -264,19 +264,19 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\DataModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DataModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\DataModel.edmx.diagram">
-      <DependentUpon>DataModel.edmx</DependentUpon>
-    </Content>
     <EntityDeploy Include="Models\UserModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>UserModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <Content Include="Models\UserModel.edmx.diagram">
       <DependentUpon>UserModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\DataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DataModel.edmx.diagram">
+      <DependentUpon>DataModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -323,6 +323,9 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\Shared\_LayoutUser.cshtml" />
     <Content Include="Views\Device\Create.cshtml" />
     <Content Include="Views\Device\Delete.cshtml" />
     <Content Include="Views\Device\Details.cshtml" />
@@ -333,13 +336,8 @@
     <Content Include="Views\Configuration\Details.cshtml" />
     <Content Include="Views\Configuration\Edit.cshtml" />
     <Content Include="Views\Configuration\Index.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\User\Delete.cshtml" />
-    <Content Include="Views\Shared\_LayoutUser.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\CurrentRole\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
