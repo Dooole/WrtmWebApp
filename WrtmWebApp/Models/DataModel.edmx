@@ -26,6 +26,7 @@
           <Property Name="Mac" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="State" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="Retries" Type="int" />
         </EntityType>
         <EntityType Name="Log">
           <Key>
@@ -66,6 +67,7 @@
           <Property Name="Mac" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Retries" Type="Int32" />
         </EntityType>
         <EntityContainer Name="wrtmDBEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Configurations" EntityType="Self.Configuration" />
@@ -104,6 +106,7 @@
           <EntitySetMapping Name="Devices">
             <EntityTypeMapping TypeName="wrtmDBModel.Device">
               <MappingFragment StoreEntitySet="Devices">
+                <ScalarProperty Name="Retries" ColumnName="Retries" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Mac" ColumnName="Mac" />
                 <ScalarProperty Name="State" ColumnName="State" />

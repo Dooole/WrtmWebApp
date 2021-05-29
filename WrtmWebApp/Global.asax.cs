@@ -32,7 +32,7 @@ namespace WrtmWebApp
             {
                 Polling.Poller poller = new Polling.Poller();
                 poller.Update();
-                Thread.Sleep(10 * 1000);
+                Thread.Sleep(5 * 1000);
             }
         }
     }

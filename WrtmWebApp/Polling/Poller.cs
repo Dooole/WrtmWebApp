@@ -202,12 +202,20 @@ namespace WrtmWebApp.Polling
                     continue;
                 }
 
+                if (dev.Retries == null)
+                {
+                    dev.Retries = new int();
+                    dev.Retries = 0;
+                }
+
                 string state = "OFFLINE";
+                int retries = (int)dev.Retries;
 
                 DeviceOperations dops = new DeviceOperations(cfg.Ipaddr);
                 if (dops.Login("root", "root"))
                 {
                     state = "OK";
+                    retries = 0;
 
                     Configuration devcfg = dops.Pull();
                     if (devcfg != null)
@@ -216,6 +224,7 @@ namespace WrtmWebApp.Polling
                         if (changed != null)
                         {
                             state = "CONFIGURING";
+                            retries = 1;
 
                             log.Debug(cfg.Ipaddr + ": " + "changed: " + changed);
                             log.Debug(cfg.Ipaddr + ": " + "pushing new config");
@@ -227,9 +236,23 @@ namespace WrtmWebApp.Polling
                     dops.Logout();
                 }
 
-                if (dev.State != state)
+                if (retries > 0)
+                {
+                    if (retries > 5)
+                    {
+                        retries = 0;
+                    }
+                    else
+                    {
+                        state = "CONFIGURING";
+                        retries++;
+                    }
+                }
+
+                if (dev.State != state || dev.Retries != retries)
                 {
                     dev.State = state;
+                    dev.Retries = retries;
                     db.Entry(dev).State = EntityState.Modified;
                     db.SaveChanges();
                 }

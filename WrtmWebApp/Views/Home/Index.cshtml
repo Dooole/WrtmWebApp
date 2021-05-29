@@ -24,17 +24,38 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mac)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.State)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-        </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Mac)
+    </td>
+    @if (item.State == "OK")
+    {
+        <td style="font-weight: bold; color: green">
+            @Html.DisplayFor(modelItem => item.State)
+        </td>
+    }
+    else if (item.State == "CONFIGURING")
+    {
+        <td style="font-weight: bold; color: orange">
+            @Html.DisplayFor(modelItem => item.State)
+        </td>
+    }
+    else if (item.State == "OFFLINE")
+    {
+        <td style="font-weight: bold; color: red">
+            @Html.DisplayFor(modelItem => item.State)
+        </td>
+    }
+    else
+    {
+        <td>
+            @Html.DisplayFor(modelItem => item.State)
+        </td>
+    }
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+</tr>
     }
 
 </table>

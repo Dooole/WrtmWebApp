@@ -18,5 +18,6 @@ namespace WrtmWebApp.Models
         public string Mac { get; set; }
         public string State { get; set; }
         public string Description { get; set; }
+        public Nullable<int> Retries { get; set; }
     }
 }
