@@ -31,7 +31,7 @@ namespace WrtmWebApp
             while (true)
             {
                 Polling.Poller poller = new Polling.Poller();
-                poller.UpdateAll();
+                poller.Update();
                 Thread.Sleep(10 * 1000);
             }
         }

@@ -12,7 +12,7 @@ namespace WrtmWebApp.Controllers
         private wrtmDBEntities1 db = new wrtmDBEntities1();
         public ActionResult Index()
         {
-            Response.AddHeader("Refresh", "5");
+            Response.AddHeader("Refresh", "3");
             return View(db.Devices.ToList());
         }
 
