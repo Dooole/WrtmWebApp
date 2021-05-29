@@ -179,6 +179,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logger\Logger.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetUser.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
@@ -340,11 +341,9 @@
     <Content Include="Views\Configuration\Details.cshtml" />
     <Content Include="Views\Configuration\Edit.cshtml" />
     <Content Include="Views\Configuration\Index.cshtml" />
-    <Content Include="Views\Log\Create.cshtml" />
     <Content Include="Views\Log\Delete.cshtml" />
-    <Content Include="Views\Log\Details.cshtml" />
-    <Content Include="Views\Log\Edit.cshtml" />
     <Content Include="Views\Log\Index.cshtml" />
+    <Content Include="Views\Log\DeleteAll.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

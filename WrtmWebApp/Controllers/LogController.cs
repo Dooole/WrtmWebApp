@@ -115,6 +115,27 @@ namespace WrtmWebApp.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Log/DeleteAll/5
+        public ActionResult DeleteAll()
+        {
+            return View();
+        }
+
+        // POST: Log/DeleteAll/5
+        [HttpPost, ActionName("DeleteAll")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteAllConfirmed()
+        {
+            List<Log> logs = db.Logs.ToList();
+            foreach (Log l in logs)
+            {
+                db.Logs.Remove(l);
+            }
+
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -11,7 +11,15 @@ using WrtmWebApp.Models;
 namespace WrtmWebApp.Polling
 {
     public class Poller
-    {      
+    {
+        private wrtmDBEntities1 db;
+        private Logger log;
+
+        public Poller()
+        {
+            db = new wrtmDBEntities1();
+            log = new Logger(db);
+        }
         public class LoginRequest
         {
             public string username { get; set; }
@@ -21,12 +29,6 @@ namespace WrtmWebApp.Polling
         public class LoginResponse
         {
             public string token { get; set; }
-        }
-
-        public void LogMsg(string msg)
-        {
-            string textFilePath = Path.Combine(HostingEnvironment.ApplicationPhysicalPath, "wrtmlog.txt");
-            File.WriteAllText(textFilePath, DateTime.Now.ToString()+":"+msg);
         }
 
         public bool Update(string host, string user, string pass)
@@ -47,24 +49,24 @@ namespace WrtmWebApp.Polling
                     if (loginresp.token.Length == 64) // SHA256 string len
                     {
                         Conn.TokenSet(loginresp.token);
-                        LogMsg("logged in to: "+host);
+                        log.Debug(host+": "+"logged into");
                         return true;
                     }
                     else
                     {
-                        LogMsg("Invalid token");
+                        log.Error(host + ": " + "invalid token");
                         return false;
                     }
                 }
                 else
                 {
-                    LogMsg("Invalid credentials");
+                    log.Error(host + ": " + "invalid credentials or offline");
                     return false;
                 }
             }
             catch
             {
-                LogMsg("Connection error");
+                log.Error(host + ": " + "connection error");
                 return false;
             }
         }
@@ -87,7 +89,6 @@ namespace WrtmWebApp.Polling
 
         public void UpdateAll()
         {
-            wrtmDBEntities1 db = new wrtmDBEntities1();
             List<Device> list = db.Devices.ToList();
             foreach (Device dev in list)
             {

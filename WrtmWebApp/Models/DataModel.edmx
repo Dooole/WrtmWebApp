@@ -34,7 +34,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Datetime" Type="datetime" Nullable="false" />
           <Property Name="Severity" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Message" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityContainer Name="wrtmDBModelStoreContainer">
           <EntitySet Name="Configuration" EntityType="Self.Configuration" Schema="dbo" store:Type="Tables" />
@@ -79,7 +79,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Severity" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Message" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
