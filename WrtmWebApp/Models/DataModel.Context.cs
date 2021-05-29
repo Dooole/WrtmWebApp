@@ -27,5 +27,6 @@ namespace WrtmWebApp.Models
     
         public virtual DbSet<Configuration> Configurations { get; set; }
         public virtual DbSet<Device> Devices { get; set; }
+        public virtual DbSet<Log> Logs { get; set; }
     }
 }

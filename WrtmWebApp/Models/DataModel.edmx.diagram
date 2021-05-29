@@ -7,6 +7,7 @@
       <Diagram DiagramId="2191748c0f1c406c91b3ea3bf9deac62" Name="Diagram1">
         <EntityTypeShape EntityType="wrtmDBModel.Configuration" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="wrtmDBModel.Device" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="wrtmDBModel.Log" Width="1.5" PointX="3.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
